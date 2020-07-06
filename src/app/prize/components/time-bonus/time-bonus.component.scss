@@ -1,0 +1,60 @@
+:host {
+  .flip {
+    background-color: transparent;
+    perspective: 1000px;
+    width: 100%;
+    height: 100%;
+
+    &.claimed {
+      .flip-inner {
+        transform: rotateY(180deg);
+      }
+    }
+  }
+
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .bonus-panel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    padding: 24px;
+
+    &.confirm {
+      transform: rotateY(180deg);
+      button {
+        background: #dde4e4 url("/assets/icon-tick.svg") no-repeat center center;
+      }
+    }
+
+    h1 {
+      max-width: 400px;
+      text-align: center;
+      margin: 0;
+      padding: 0 24px;
+    }
+
+    button {
+      width: 193px;
+      height: 55px;
+      border-radius: 27.5px;
+      font-size: 22px;
+      font-weight: bold;
+      border-width: 0;
+      margin-top: 6px;
+    }
+  }
+}

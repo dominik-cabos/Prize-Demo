@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "todays-prize"
+    }
+  },
+  "defaultProject": "todays-prize",
+  "cli": {
+    "analytics": "137230b1-e469-4ea5-bd75-fa2cb8360cf8"
+  }
 }

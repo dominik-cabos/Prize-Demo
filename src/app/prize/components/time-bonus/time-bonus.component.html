@@ -1,0 +1,22 @@
+<div class="flip" [class.claimed]="claimed">
+  <div class="flip-inner">
+    <div class="bonus-panel">
+      <h1 class="info">
+        {{ bonusData?.amount }}
+        {{ bonusData?.prize }} on
+        {{ bonusData?.game }}
+      </h1>
+
+      <div class="countdown">{{ countdown$ | async | time }}</div>
+      <button (click)="claim()">
+        Claim now
+      </button>
+    </div>
+
+    <div class="bonus-panel confirm">
+      <h1>You've {{ bonusData?.amount }} {{ bonusData?.prize }} to use now</h1>
+
+      <button (click)="close()"></button>
+    </div>
+  </div>
+</div>
