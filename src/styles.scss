@@ -5,7 +5,7 @@ $color-action-secondary: #ff78cf;
 $color-confirmation: #00a49c;
 $app-background: #9480e1;
 $app-background-blue: #7eb0f7;
-$app-background-2: linear-gradient(
+$app-background-2: $app-background-blue linear-gradient(
   to bottom,
   $app-background 0%,
   $app-background-blue 100%
@@ -13,7 +13,7 @@ $app-background-2: linear-gradient(
 $font-family-base: Helvetica;
 
 @mixin linear-gradient($color1, $color2) {
-  background-image: $app-background-blue linear-gradient(-180deg, $color2 0%, $color1 99%);
+  background-image: linear-gradient(-180deg, $color2 0%, $color1 99%);
   box-shadow: 0 2px 0 0 #b00e78;
 }
 
