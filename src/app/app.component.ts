@@ -40,9 +40,9 @@ export class AppComponent implements OnInit {
         return of(null);
       }),
       tap((_) => {
-        this.hideReload = false;
         if (!this.error) {
           this.bonusReady = true;
+          this.hideReload = false;
         }
       })
     );
