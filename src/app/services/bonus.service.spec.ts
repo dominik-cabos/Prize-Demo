@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {BonusService} from './bonus.service';
-import {BONUS_SAMPLE} from '../prize/components/time-bonus/tests/time-bonus-container/bonus.sample';
+import {BONUS_SAMPLE_HTTP} from '../prize/components/time-bonus/tests/time-bonus-container/bonus.sample';
 import {HttpClientTestingModule, HttpTestingController,} from '@angular/common/http/testing';
 
 describe('BonusService', () => {
@@ -26,11 +26,11 @@ describe('BonusService', () => {
 
   it('should return a Bonus when a matching response comes from the Http adapter', () => {
     service.getBonus().subscribe((bonus) => {
-      expect(bonus).toEqual(BONUS_SAMPLE);
+      expect(bonus).toEqual(BONUS_SAMPLE_HTTP);
     });
 
     const req = httpTestingController.expectOne('assets/bonus.json');
-    req.flush(BONUS_SAMPLE);
+    req.flush(BONUS_SAMPLE_HTTP);
 
     expect(service).toBeTruthy();
   });
@@ -45,6 +45,6 @@ describe('BonusService', () => {
       }
     );
     const req = httpTestingController.expectOne('assets/bonus.json');
-    req.error(new ErrorEvent('ultimate'));
+    req.error(new ErrorEvent('Oooops.'));
   });
 });

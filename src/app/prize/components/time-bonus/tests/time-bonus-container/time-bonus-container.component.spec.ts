@@ -8,7 +8,7 @@ import {
 import { TimeBonusContainerComponent } from './time-bonus-container.component';
 import { TimeBonusComponent } from '../../time-bonus.component';
 import { TimePipe } from '../../../../pipes/time.pipe';
-import { BONUS_SAMPLE } from './bonus.sample';
+import { BONUS_SAMPLE_HTTP } from './bonus.sample';
 import { SimpleChange } from '@angular/core';
 
 describe('TimeBonusContainerComponent', () => {
@@ -28,7 +28,7 @@ describe('TimeBonusContainerComponent', () => {
     fixture = TestBed.createComponent(TimeBonusContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.bonusComponent.bonusData = BONUS_SAMPLE;
+    component.bonusComponent.bonusData = BONUS_SAMPLE_HTTP;
     topWrapper = fixture.nativeElement.querySelector('.flip');
     claimButton = fixture.nativeElement.querySelector('button');
     doneButton = fixture.nativeElement.querySelector(
@@ -41,9 +41,9 @@ describe('TimeBonusContainerComponent', () => {
     const bonusInfo = fixture.nativeElement.querySelector(
       '.bonus-panel h1.info'
     ).innerHTML;
-    expect(bonusInfo).toContain(BONUS_SAMPLE.amount);
-    expect(bonusInfo).toContain(BONUS_SAMPLE.game);
-    expect(bonusInfo).toContain(BONUS_SAMPLE.prize);
+    expect(bonusInfo).toContain(BONUS_SAMPLE_HTTP.amount);
+    expect(bonusInfo).toContain(BONUS_SAMPLE_HTTP.game);
+    expect(bonusInfo).toContain(BONUS_SAMPLE_HTTP.prize);
     expect(topWrapper).not.toHaveClass('claimed');
   });
 
@@ -60,7 +60,7 @@ describe('TimeBonusContainerComponent', () => {
     spyOn(component.bonusComponent.bonusTimeout, 'emit');
     component.bonusComponent.ngOnChanges(SimpleChange);
     component.bonusComponent.countdown$.subscribe((_) => {});
-    tick(BONUS_SAMPLE.countdown * 1001);
+    tick(BONUS_SAMPLE_HTTP.countdown * 1001);
     expect(component.bonusComponent.bonusTimeout.emit).toHaveBeenCalled();
   }));
 

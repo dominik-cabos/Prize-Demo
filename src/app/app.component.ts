@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {BonusService} from './services/bonus.service';
-import {catchError, take, tap} from 'rxjs/operators';
-import {Bonus} from './prize/models/bonus';
-import {interval, Observable, of} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { BonusService } from './services/bonus.service';
+import { catchError, take, tap } from 'rxjs/operators';
+import { Bonus } from './prize/models/bonus';
+import { interval, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +19,19 @@ export class AppComponent implements OnInit {
   bonusReady = false;
   bonusFinished = false;
 
-  private alertTimeout = 3000;
+  private alertTimeout = 5000;
   hideReload = true;
 
+  get getBonusService(): BonusService {
+    return this.bonusService;
+  }
+
+  get getAlertTimeout(): number {
+    return this.alertTimeout;
+  }
+
   ngOnInit(): void {
-    this.bonusFeed$ = this.bonusService.getBonus().pipe(
+    this.bonusFeed$ = this.getBonusService.getBonus().pipe(
       catchError((err, caught) => {
         this.error = err;
         interval(this.alertTimeout)
@@ -44,8 +52,12 @@ export class AppComponent implements OnInit {
     this.bonusFinished = true;
   }
 
+  getLocationObject(): any {
+    return window.location;
+  }
+
   reload(): void {
     this.hideReload = true;
-    setTimeout((_) => window.location.reload(), 500);
+    this.getLocationObject().reload();
   }
 }
