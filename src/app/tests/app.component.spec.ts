@@ -1,4 +1,4 @@
-import {async, ComponentFixture, fakeAsync, TestBed, tick,} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick, } from '@angular/core/testing';
 import {AppComponent} from '../app.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {Bonus} from '../prize/models/bonus';
@@ -10,12 +10,13 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
   let bonusContainer: HTMLElement;
-
-  const mockBonusResponse = new Subject<Bonus>();
-  const mockBonusService = jasmine.createSpyObj(['getBonus']);
-  mockBonusService.getBonus.and.returnValue(mockBonusResponse.asObservable());
+  let mockBonusResponse: Subject<Bonus>;
 
   beforeEach(async(() => {
+    mockBonusResponse = new Subject<Bonus>();
+    const mockBonusService = jasmine.createSpyObj(['getBonus']);
+    mockBonusService.getBonus.and.returnValue(mockBonusResponse.asObservable());
+
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
@@ -26,9 +27,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
-
     fixture.detectChanges();
-
     mockBonusResponse.next(BONUS_SAMPLE_SERVICE);
     bonusContainer = fixture.nativeElement.querySelector('.bonus-container');
     fixture.detectChanges();
